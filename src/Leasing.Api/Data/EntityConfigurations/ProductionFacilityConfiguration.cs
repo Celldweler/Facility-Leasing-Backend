@@ -10,7 +10,7 @@ public class ProductionFacilityConfiguration : IEntityTypeConfiguration<Producti
     public void Configure(EntityTypeBuilder<ProductionFacility> builder)
     {
         builder.HasKey(x => x.Code);
-        
+
         builder.Property(x => x.Name)
             .HasMaxLength(Constants.ProductionFacilityNameMaxLength)
             .IsRequired();
@@ -19,10 +19,9 @@ public class ProductionFacilityConfiguration : IEntityTypeConfiguration<Producti
             .IsUnique();
 
         builder.Property(x => x.Area).IsRequired();
-        
+
         builder.HasCheckConstraint(
             "CK_ProductionFacility_Area",
             $"[Area] >= {Constants.MinProductionFacilityArea}");
-
     }
 }
