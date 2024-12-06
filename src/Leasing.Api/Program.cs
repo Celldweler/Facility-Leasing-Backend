@@ -1,18 +1,36 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Leasing.Api.Data;
+using Leasing.Api.Data.Repository;
+using Leasing.Api.FluentValidation.Contract;
+using Leasing.Api.Middleware;
+using Leasing.Api.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 var configuration = builder.Configuration;
 var environment = builder.Environment;
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+services.AddControllers();
+services.AddSwaggerGen();
+services.AddEndpointsApiExplorer();
+services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+services.AddFluentValidationAutoValidation()
+    .AddFluentValidationClientsideAdapters()
+    .AddValidatorsFromAssemblyContaining<CreateContractDtoValidator>();
 
-builder.Services.AddDbContext<LeasingDataContext>(x =>
+services.AddDbContext<LeasingDataContext>(x =>
     x.UseSqlServer(configuration
         .GetConnectionString(
             environment.IsDevelopment() ? "SqlServer" : "AzureSQL")));
+
+services.AddTransient<IContractService, ContractService>();
+services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<LeasingDataContext>());
+
+services.AddTransient<IContractRepository, ContractRepository>();
+services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+services.AddTransient<IProductionFacilityRepository, ProductionFacilityRepository>();
 
 var app = builder.Build();
 
@@ -24,17 +42,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<ExceptionMiddleware>();
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 using var scope = app.Services.CreateScope();
-var services = scope.ServiceProvider;
-var context = services.GetRequiredService<LeasingDataContext>();
-var logger = services.GetRequiredService<ILogger<Program>>();
+var context = scope.ServiceProvider.GetRequiredService<LeasingDataContext>();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 try
 {
-    await context.Database.MigrateAsync();
+    context.Database.Migrate();
 }
 catch (Exception ex)
 {
