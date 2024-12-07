@@ -29,10 +29,7 @@ public abstract class EntityRepositoryBase<TKey, TEntity> : IRepository<TKey, TE
         return (await query.ToListAsync()).AsReadOnly();
     }
 
-    public virtual Task<TEntity> GetByIdAsync(TKey id)
-    {
-        throw new NotImplementedException();
-    }
+    public abstract Task<TEntity> GetByIdAsync(TKey id);
 
     public virtual async Task<TEntity> AddAsync(TEntity entity)
     {
