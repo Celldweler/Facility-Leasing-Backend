@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using Leasing.Api.Common.Exceptions;
+using Leasing.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Leasing.Api.Middleware;
