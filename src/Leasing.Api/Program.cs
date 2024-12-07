@@ -109,11 +109,6 @@ using var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<LeasingDataContext>();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
-var value = config.GetValue<string>("TestKey");
-
-logger.LogInformation("Value: {0} from AppConfiguration endpoint", value);
-
 try
 {
     context.Database.Migrate();
