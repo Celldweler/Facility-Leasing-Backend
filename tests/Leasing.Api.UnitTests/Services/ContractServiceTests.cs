@@ -8,6 +8,7 @@ using Leasing.Api.Domain;
 using Leasing.Api.DTOs.Contract;
 using Leasing.Api.FluentValidation.Contract;
 using Leasing.Api.Mapping;
+using Leasing.Api.Services;
 using Leasing.Api.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 using MockQueryable.NSubstitute;
@@ -20,6 +21,7 @@ public class ContractServiceTests
     private IMapper _mapper;
     private IUnitOfWork _unitOfWork;
     private ContractService _contractService;
+    private IEventPublisher _eventPublisher;
     private IValidator<CreateContractDto> _validator;
     private IContractRepository _contractRepository;
     private IEquipmentRepository _equipmentRepository;
@@ -30,6 +32,7 @@ public class ContractServiceTests
     {
         _unitOfWork = Substitute.For<IUnitOfWork>();
         _validator = new CreateContractDtoValidator();
+        _eventPublisher = Substitute.For<IEventPublisher>();
         _contractRepository = Substitute.For<IContractRepository>();
         _equipmentRepository = Substitute.For<IEquipmentRepository>();
         _productionFacilityRepository = Substitute.For<IProductionFacilityRepository>();
@@ -41,6 +44,7 @@ public class ContractServiceTests
         _contractService = new ContractService(
             _mapper,
             _unitOfWork,
+            _eventPublisher,
             _validator,
             _contractRepository,
             _equipmentRepository,

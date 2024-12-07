@@ -4,6 +4,7 @@ using Leasing.Api.Common.Exceptions;
 using Leasing.Api.Data;
 using Leasing.Api.Data.Repository;
 using Leasing.Api.Domain;
+using Leasing.Api.Domain.Events;
 using Leasing.Api.DTOs.Contract;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ public class ContractService : IContractService
 {
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IEventPublisher _eventPublisher;
     private readonly IContractRepository _contractRepository;
     private readonly IEquipmentRepository _equipmentRepository;
     private readonly IProductionFacilityRepository _productionFacilityRepository;
@@ -21,6 +23,7 @@ public class ContractService : IContractService
     public ContractService(
         IMapper mapper,
         IUnitOfWork unitOfWork,
+        IEventPublisher eventPublisher,
         IValidator<CreateContractDto> validator,
         IContractRepository contractRepository,
         IEquipmentRepository equipmentRepository,
@@ -29,6 +32,7 @@ public class ContractService : IContractService
         _mapper = mapper;
         _unitOfWork = unitOfWork;
         _validator = validator;
+        _eventPublisher = eventPublisher;
         _contractRepository = contractRepository;
         _equipmentRepository = equipmentRepository;
         _productionFacilityRepository = productionFacilityRepository;
@@ -71,6 +75,8 @@ public class ContractService : IContractService
         }
 
         await _contractRepository.AddAsync(newContract);
+        await _eventPublisher.PublishAsync(
+            new ContractCreatedEvent(newContract.FacilityCode, newContract.EquipmentCode));
 
         return _mapper.Map<ContractDto>(newContract);
     }
