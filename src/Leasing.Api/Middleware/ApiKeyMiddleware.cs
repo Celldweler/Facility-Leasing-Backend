@@ -1,5 +1,5 @@
-﻿using System.Net;
-using Leasing.Api.Common;
+﻿using Leasing.Domain.Common;
+using System.Net;
 
 namespace Leasing.Api.Middleware;
 

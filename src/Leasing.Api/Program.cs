@@ -1,18 +1,14 @@
-using Azure.Messaging.ServiceBus;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Leasing.Api.BackgroundJobs;
-using Leasing.Api.Configuration;
-using Leasing.Api.Data;
-using Leasing.Api.Data.Repository;
-using Leasing.Api.Domain.Events;
-using Leasing.Api.FluentValidation.Contract;
 using Leasing.Api.Middleware;
-using Leasing.Api.Services;
-using Leasing.Api.Services.Contracts;
+using Leasing.Data;
+using Leasing.Data.DataContext;
+using Leasing.Domain.Common;
+using Leasing.Domain.Configuration;
+using Leasing.Infrastructure;
+using Leasing.Services;
+using Leasing.Services.FluentValidation.Contract;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Channels;
-using Leasing.Api.Common;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,44 +45,23 @@ services.AddSwaggerGen(config =>
 });
 
 services.AddEndpointsApiExplorer();
+
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 services.AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters()
     .AddValidatorsFromAssemblyContaining<CreateContractDtoValidator>();
 
-services.AddDbContext<LeasingDataContext>(x =>
-    x.UseSqlServer(configuration
-        .GetConnectionString(
-            environment.IsDevelopment() ? "SqlServer" : "AzureSQL")));
-
-services.AddTransient<IContractService, ContractService>();
-services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<LeasingDataContext>());
-
-services.AddTransient<IContractRepository, ContractRepository>();
-services.AddTransient<IEquipmentRepository, EquipmentRepository>();
-services.AddTransient<IProductionFacilityRepository, ProductionFacilityRepository>();
-
+services.AddLeasingData(configuration, environment);
+services.AddLeasingServices(configuration, environment);
+services.AddLeasingInfrastructure(configuration, environment);
 
 if (environment.IsProduction())
 {
     configuration.AddAzureAppConfiguration(options =>
-    options.Connect(configuration.GetConnectionString("AppConfiguration")!));
+        options.Connect(configuration.GetConnectionString("AppConfiguration")!));
 
-    services.AddSingleton<IEventPublisher, AzureServiceBusEventPublisher>();
-
-    services.Configure<ServiceBusOptions>(configuration.GetSection(ServiceBusOptions.Section));
-    services.AddSingleton(sp =>
-    {
-        var config = sp.GetRequiredService<IConfiguration>();
-
-        return new ServiceBusClient(config.GetConnectionString("AzureServiceBus"));
-    });
-}
-else
-{
-    services.AddHostedService<EventProccessorService>();
-    services.AddSingleton<IEventPublisher, ChannelEventPublisher>();
-    services.AddSingleton(_ => Channel.CreateUnbounded<ContractCreatedEvent>());
+    services.Configure<ServiceBusOptions>(
+        configuration.GetSection(ServiceBusOptions.Section));
 }
 
 var app = builder.Build();

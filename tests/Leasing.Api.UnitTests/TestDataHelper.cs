@@ -1,4 +1,4 @@
-﻿using Leasing.Api.DTOs.Contract;
+﻿using Leasing.Services.DTOs.Contract;
 
 namespace Leasing.Api.UnitTests;
 

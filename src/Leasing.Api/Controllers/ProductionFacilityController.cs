@@ -1,5 +1,5 @@
-﻿using Leasing.Api.Data;
-using Leasing.Api.Domain;
+﻿using Leasing.Data.DataContext;
+using Leasing.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

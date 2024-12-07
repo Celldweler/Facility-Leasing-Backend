@@ -1,5 +1,5 @@
-﻿using Leasing.Api.DTOs.Contract;
-using Leasing.Api.Services.Contracts;
+﻿using Leasing.Services.Contracts;
+using Leasing.Services.DTOs.Contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leasing.Api.Controllers;

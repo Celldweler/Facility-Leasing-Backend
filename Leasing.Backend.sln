@@ -3,42 +3,62 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5632610E-AB09-4F3B-91D0-987504C586B1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB658249-7298-4AFE-BA1F-8E206797BD9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leasing.Api", "src\Leasing.Api\Leasing.Api.csproj", "{2A59E40B-BB52-4694-B3F6-9E216B64E981}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leasing.Api", "src\Leasing.Api\Leasing.Api.csproj", "{4AA53731-B51A-4E26-84D3-9015198C35DA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7981A7EE-D9CA-4ABA-9B14-5249A429BCD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leasing.Data", "src\Leasing.Data\Leasing.Data.csproj", "{3E0CBFE6-394D-4B90-8351-7E4FBCECED2F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leasing.Api.UnitTests", "tests\Leasing.Api.UnitTests\Leasing.Api.UnitTests.csproj", "{FC4584EC-756D-4EE1-A589-1E1C1511BD00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leasing.Domain", "src\Leasing.Domain\Leasing.Domain.csproj", "{6E7628FB-E47F-46B1-9A96-D57A44DB5459}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A19BFA5-5559-45B4-BAF5-577EAB5BA2AA}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leasing.Infrastructure", "src\Leasing.Infrastructure\Leasing.Infrastructure.csproj", "{2429150A-32F2-4D6D-9EF9-F170DDDBE8FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leasing.Services", "src\Leasing.Services\Leasing.Services.csproj", "{A226951E-1030-4D62-9350-DF38EB7D7768}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{23FD1637-A697-4EC3-8882-F0825AED91BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leasing.Api.UnitTests", "tests\Leasing.Api.UnitTests\Leasing.Api.UnitTests.csproj", "{36018E33-E44E-42C2-A0F9-17300F4ACEBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A59E40B-BB52-4694-B3F6-9E216B64E981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A59E40B-BB52-4694-B3F6-9E216B64E981}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A59E40B-BB52-4694-B3F6-9E216B64E981}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A59E40B-BB52-4694-B3F6-9E216B64E981}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC4584EC-756D-4EE1-A589-1E1C1511BD00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC4584EC-756D-4EE1-A589-1E1C1511BD00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC4584EC-756D-4EE1-A589-1E1C1511BD00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC4584EC-756D-4EE1-A589-1E1C1511BD00}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{2A59E40B-BB52-4694-B3F6-9E216B64E981} = {5632610E-AB09-4F3B-91D0-987504C586B1}
-		{FC4584EC-756D-4EE1-A589-1E1C1511BD00} = {7981A7EE-D9CA-4ABA-9B14-5249A429BCD2}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AA53731-B51A-4E26-84D3-9015198C35DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AA53731-B51A-4E26-84D3-9015198C35DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AA53731-B51A-4E26-84D3-9015198C35DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AA53731-B51A-4E26-84D3-9015198C35DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E0CBFE6-394D-4B90-8351-7E4FBCECED2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E0CBFE6-394D-4B90-8351-7E4FBCECED2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E0CBFE6-394D-4B90-8351-7E4FBCECED2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E0CBFE6-394D-4B90-8351-7E4FBCECED2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E7628FB-E47F-46B1-9A96-D57A44DB5459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E7628FB-E47F-46B1-9A96-D57A44DB5459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E7628FB-E47F-46B1-9A96-D57A44DB5459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E7628FB-E47F-46B1-9A96-D57A44DB5459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2429150A-32F2-4D6D-9EF9-F170DDDBE8FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2429150A-32F2-4D6D-9EF9-F170DDDBE8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2429150A-32F2-4D6D-9EF9-F170DDDBE8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2429150A-32F2-4D6D-9EF9-F170DDDBE8FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A226951E-1030-4D62-9350-DF38EB7D7768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A226951E-1030-4D62-9350-DF38EB7D7768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A226951E-1030-4D62-9350-DF38EB7D7768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A226951E-1030-4D62-9350-DF38EB7D7768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36018E33-E44E-42C2-A0F9-17300F4ACEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36018E33-E44E-42C2-A0F9-17300F4ACEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36018E33-E44E-42C2-A0F9-17300F4ACEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36018E33-E44E-42C2-A0F9-17300F4ACEBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {06ADBCBB-DCB3-4F81-BAFB-E530AC99508E}
+	GlobalSection(NestedProjects) = preSolution
+		{4AA53731-B51A-4E26-84D3-9015198C35DA} = {EB658249-7298-4AFE-BA1F-8E206797BD9D}
+		{3E0CBFE6-394D-4B90-8351-7E4FBCECED2F} = {EB658249-7298-4AFE-BA1F-8E206797BD9D}
+		{6E7628FB-E47F-46B1-9A96-D57A44DB5459} = {EB658249-7298-4AFE-BA1F-8E206797BD9D}
+		{2429150A-32F2-4D6D-9EF9-F170DDDBE8FB} = {EB658249-7298-4AFE-BA1F-8E206797BD9D}
+		{A226951E-1030-4D62-9350-DF38EB7D7768} = {EB658249-7298-4AFE-BA1F-8E206797BD9D}
+		{36018E33-E44E-42C2-A0F9-17300F4ACEBA} = {23FD1637-A697-4EC3-8882-F0825AED91BD}
 	EndGlobalSection
 EndGlobal
