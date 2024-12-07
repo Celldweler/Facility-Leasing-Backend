@@ -11,6 +11,7 @@ using Leasing.Services.DTOs.Contract;
 using Leasing.Services.FluentValidation.Contract;
 using Leasing.Services.Mapping;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MockQueryable.NSubstitute;
 using NSubstitute;
 
@@ -20,8 +21,9 @@ public class ContractServiceTests
 {
     private IMapper _mapper;
     private IUnitOfWork _unitOfWork;
-    private ContractService _contractService;
     private IEventPublisher _eventPublisher;
+    private ILogger<ContractService> _logger;
+    private ContractService _contractService;
     private IValidator<CreateContractDto> _validator;
     private IContractRepository _contractRepository;
     private IEquipmentRepository _equipmentRepository;
@@ -33,6 +35,7 @@ public class ContractServiceTests
         _unitOfWork = Substitute.For<IUnitOfWork>();
         _validator = new CreateContractDtoValidator();
         _eventPublisher = Substitute.For<IEventPublisher>();
+        _logger = Substitute.For<ILogger<ContractService>>();
         _contractRepository = Substitute.For<IContractRepository>();
         _equipmentRepository = Substitute.For<IEquipmentRepository>();
         _productionFacilityRepository = Substitute.For<IProductionFacilityRepository>();
@@ -45,8 +48,9 @@ public class ContractServiceTests
             _mapper,
             _unitOfWork,
             _eventPublisher,
-            _validator,
+            _logger,
             _contractRepository,
+            _validator,
             _equipmentRepository,
             _productionFacilityRepository);
     }
