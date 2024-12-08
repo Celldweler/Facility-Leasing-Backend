@@ -1,3 +1,5 @@
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Azure.Identity;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Leasing.Api.Middleware;
@@ -51,26 +53,42 @@ services.AddFluentValidationAutoValidation()
     .AddFluentValidationClientsideAdapters()
     .AddValidatorsFromAssemblyContaining<CreateContractDtoValidator>();
 
+if (environment.IsProduction())
+{
+    try
+    {
+        var keyVaultUrl = configuration["Azure:KeyVault:Url"];
+        var keyVaultUri = new Uri(keyVaultUrl ?? throw new ArgumentNullException("VaultUri is missing in the configuration."));
+        var credential = new ClientSecretCredential(
+            configuration["Azure:KeyVault:TenantId"],
+            configuration["Azure:KeyVault:ClientId"],
+            configuration["Azure:KeyVault:ClientSecret"]);
+        
+        configuration.AddAzureKeyVault(
+            keyVaultUri,
+            credential,
+            new AzureKeyVaultConfigurationOptions
+            {
+                ReloadInterval = TimeSpan.FromSeconds(30)
+            });
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Failed to configure Azure Key Vault: {ex.Message}");
+        throw;
+    }
+}
+
 services.AddLeasingData(configuration, environment);
 services.AddLeasingServices(configuration, environment);
 services.AddLeasingInfrastructure(configuration, environment);
-
-if (environment.IsProduction())
-{
-    configuration.AddAzureAppConfiguration(options =>
-        options.Connect(configuration.GetConnectionString("AppConfiguration")!));
-
-    services.Configure<ServiceBusOptions>(
+services.Configure<ServiceBusOptions>(
         configuration.GetSection(ServiceBusOptions.Section));
-}
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

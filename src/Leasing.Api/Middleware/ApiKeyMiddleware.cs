@@ -34,7 +34,8 @@ public class ApiKeyMiddleware
     {
         if (string.IsNullOrWhiteSpace(userApiKey))
             return false;
-        string? apiKey = _configuration.GetValue<string>(Constants.ApiKeyName);
+        string? apiKey = _configuration.GetValue<string>(Constants.ApiKeyName)
+            ?? throw new ArgumentNullException(Constants.ApiKeyName, $"API key '{Constants.ApiKeyName}' is missing in the configuration.");
         if (apiKey == null || apiKey != userApiKey)
             return false;
         return true;
