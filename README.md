@@ -45,16 +45,16 @@
 
 ## 4. Choose Azure App Service Linux 
 
-![Leasing.Backend how to publish app to azure](img\Choose-Azure-App-Service-Linux-Plan.png)
+![Leasing.Backend how to publish app to azure](img/Choose-Azure-App-Service-Linux-Plan.png)
 
 ## 5. Choose an App Name, Subscription, Resource Group, and App Service Plan.
 
-![Leasing.Backend how to publish app to azure](img\Choose-App-Service-WebApp.png)
+![Leasing.Backend how to publish app to azure](img/Choose-App-Service-WebApp.png)
 
 ## 6. Choose Deployment type and click publish.
 
-![Leasing.Backend how to publish app to azure](img\Deploy-Type-PublishProfile.png)
+![Leasing.Backend how to publish app to azure](img/Deploy-Type-PublishProfile.png)
 
 ## 7. Leasing.Backend deployed to Azure.
 
-![Leasing.Backend how to publish app to azure](img\Leasing-Api-Deployed.png)
+![Leasing.Backend how to publish app to azure](img/Leasing-Api-Deployed.png)
