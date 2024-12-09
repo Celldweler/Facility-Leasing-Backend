@@ -1,8 +1,9 @@
 # Facility-Leasing-Backend
 
 ## Table of Contents (Optional)
-- [Running the sample locally](#running-the-sample-locally)
+- [Tech Stack](#Tech-Stack)
 - [Running the sample locally](#Running-the-sample-locally)
+- [Deploying to Azure App Service](#Deploying-to-Azure-App-Service)
 
 ---
 
@@ -10,7 +11,7 @@
 - .NET 8, Asp.Net Core WebApi
 -  Entity Framework Core
 - MS SqlServer, Azure SQL
-- Azure App Service
+- Azure App Service, Azure Service Bus
 
 ## Running the sample locally
 
@@ -37,7 +38,7 @@
     dotnet ef migrations add InitialModel --startup-project ..\Leasing.Api\
     ```
 
-## Deploying to Azure App Service from Visual Studio
+## Deploying to Azure App Service
 
 ### 1. Open the Leasing.Backend solution in Visual Studio.
 
