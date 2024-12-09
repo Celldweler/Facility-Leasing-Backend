@@ -1,5 +1,11 @@
 # Facility-Leasing-Backend
 
+## Table of Contents (Optional)
+- [Running the sample locally](#running-the-sample-locally)
+- [Running the sample locally](#Running-the-sample-locally)
+
+---
+
 ### Tech Stack:
 - .NET 8, Asp.Net Core WebApi
 -  Entity Framework Core
