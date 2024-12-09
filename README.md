@@ -37,11 +37,11 @@
 
 ## 2. Right-click on the Web project in Solution Explorer and choose Publish.
 
-![Leasing.Backend how to publish app to azure](img\img1.png)
+![Leasing.Backend how to publish app to azure](img/img1.png)
 
 ## 3. Choose Microsoft Azure App Service.
 
-![Leasing.Backend how to publish app to azure](img\img3.png)
+![Leasing.Backend how to publish app to azure](/img/img3.png)
 
 ## 4. Choose Azure App Service Linux 
 
