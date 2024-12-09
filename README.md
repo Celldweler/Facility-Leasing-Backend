@@ -30,3 +30,31 @@
     ```    -- create migration (from Leasing.Data folder CLI)
     dotnet ef migrations add InitialModel --startup-project ..\Leasing.Api\
     ```
+
+## Deploying to Azure App Service from Visual Studio
+
+# 1. Open the Leasing.Backend solution in Visual Studio.
+
+# 2. Right-click on the Web project in Solution Explorer and choose Publish.
+
+![Leasing.Backend how to publish app to azure](img\img1.png)
+
+# 3. Choose Microsoft Azure App Service.
+
+![Leasing.Backend how to publish app to azure](img\img3.png)
+
+# 4. Choose Azure App Service Linux 
+
+![Leasing.Backend how to publish app to azure](img\Choose-Azure-App-Service-Linux-Plan.png)
+
+# 5. Choose an App Name, Subscription, Resource Group, and App Service Plan.
+
+![Leasing.Backend how to publish app to azure](img\Choose-App-Service-WebApp.png)
+
+# 6. Choose Deployment type and click publish.
+
+![Leasing.Backend how to publish app to azure](img\Deploy-Type-PublishProfile.png)
+
+# 7. Leasing.Backend deployed to Azure.
+
+![Leasing.Backend how to publish app to azure](img\Leasing-Api-Deployed.png)
